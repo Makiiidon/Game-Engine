@@ -22,6 +22,9 @@
     <Filter Include="GameEngine\WindowingSystem">
       <UniqueIdentifier>{1a590c20-f9d0-43d7-875c-da4af5632991}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{f36bd552-ff69-43bb-a20a-a36269cf4276}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -64,7 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader.fx">
-      <Filter>App</Filter>
+      <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

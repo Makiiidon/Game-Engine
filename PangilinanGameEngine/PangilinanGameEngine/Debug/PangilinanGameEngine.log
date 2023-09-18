@@ -1,9 +1,2 @@
-﻿  AppWindow.cpp
-  DeviceContext.cpp
-  GraphicsEngine.cpp
-  main.cpp
-  SwapChain.cpp
-  VertexBuffer.cpp
-  Window.cpp
-  Generating Code...
-  PangilinanGameEngine.vcxproj -> D:\School Files\GDENG03\Game Engine\PangilinanGameEngine\Debug\PangilinanGameEngine.exe
+﻿  Window.cpp
+  PangilinanGameEngine.vcxproj -> C:\Users\Student\Documents\Pangilinan\Game-Engine\PangilinanGameEngine\Debug\PangilinanGameEngine.exe
