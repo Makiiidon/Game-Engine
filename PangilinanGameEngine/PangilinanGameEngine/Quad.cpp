@@ -7,10 +7,14 @@ Quad::Quad(void* list, UINT size_vertex, UINT size_list)
 	m_vb = GraphicsEngine::get()->createVertexBuffer();
 
 	void* shader_byte_code = nullptr;
-	UINT size_shader = 0;
+	size_t size_shader = 0;
+	GraphicsEngine::get()->compileVertexShader(L"VertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
+
+	// load vertex shader
+	m_vs = GraphicsEngine::get()->createVertexShader(shader_byte_code, size_shader);
 
 	// Get the shader data
-	GraphicsEngine::get()->getShaderBufferAndSize(&shader_byte_code, &size_shader);
+	//GraphicsEngine::get()->getShaderBufferAndSize(&shader_byte_code, &size_shader);
 
 	// load the vertices
 	m_vb->load(list, size_vertex, size_list, shader_byte_code, size_shader);
@@ -25,6 +29,7 @@ void Quad::drawQuad()
 {
 	// Set Vertex Data
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setVertextShader(m_vs);
 
 	// Draw Quad
 	GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStip(m_vb->getSizeVertexList(), 0);

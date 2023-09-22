@@ -72,8 +72,12 @@ void AppWindow::onCreate()
 	GraphicsEngine::get()->createShaders();
 
 	void* shader_byte_code = nullptr;
-	UINT size_shader = 0;
-	GraphicsEngine::get()->getShaderBufferAndSize(&shader_byte_code, &size_shader);
+	size_t size_shader = 0;
+	GraphicsEngine::get()->compileVertexShader(L"VertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
+
+	m_vs = GraphicsEngine::get()->createVertexShader(shader_byte_code, size_shader);
+
+	//GraphicsEngine::get()->getShaderBufferAndSize(&shader_byte_code, &size_shader);
 
 	m_vb->load(list, sizeof(vertex), size_list, shader_byte_code, size_shader);
 
@@ -81,6 +85,9 @@ void AppWindow::onCreate()
 	quad1 = new Quad(quadList1, sizeof(vertex), size_quadList1);
 	quad2 = new Quad(quadList2, sizeof(vertex), size_quadList2);
 	quad3 = new Quad(quadList3, sizeof(vertex), size_quadList3);
+
+	// RELEASE ALL COMPILED SHADERS
+	GraphicsEngine::get()->releaseCompiledShader();
 }
 
 void AppWindow::onUpdate()
@@ -96,6 +103,8 @@ void AppWindow::onUpdate()
 	GraphicsEngine::get()->setShaders();
 	//SET THE VERTICES OF THE TRIANGLE TO DRAW
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setVertextShader(m_vs);
+
 
 	// FINALLY DRAW THE TRIANGLE
 	GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleList(m_vb->getSizeVertexList(), 0);
