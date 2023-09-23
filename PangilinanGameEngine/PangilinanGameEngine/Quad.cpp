@@ -32,12 +32,17 @@ Quad::~Quad()
 {
 }
 
-void Quad::drawQuad()
+void Quad::drawQuad(ConstantBuffer* buffer)
 {
-	// Set Vertex Data
-	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
+	// Set Constant Buffer Data
+	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_vs, buffer);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_ps, buffer);
+
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertextShader(m_vs);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(m_ps);
+
+	// Set Vertex Data
+	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
 
 	// Draw Quad
 	GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStip(m_vb->getSizeVertexList(), 0);
