@@ -28,7 +28,10 @@
     <Filter Include="GameEngine\Meshes">
       <UniqueIdentifier>{b1112b1b-3912-4703-8685-b27a90282294}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\VertexShader">
+    <Filter Include="GameEngine\GraphicsEngine\PixelShader">
+      <UniqueIdentifier>{5acc4640-47b0-4f5c-91bb-0709af41729e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\VertexShader">
       <UniqueIdentifier>{42fb5b2c-7bc6-477a-b973-7a966dfa26a7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -58,7 +61,10 @@
       <Filter>GameEngine\Meshes</Filter>
     </ClCompile>
     <ClCompile Include="VertexShader.cpp">
-      <Filter>GameEngine\VertexShader</Filter>
+      <Filter>GameEngine\GraphicsEngine\VertexShader</Filter>
+    </ClCompile>
+    <ClCompile Include="PixelShader.cpp">
+      <Filter>GameEngine\GraphicsEngine\PixelShader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -84,7 +90,10 @@
       <Filter>GameEngine\Meshes</Filter>
     </ClInclude>
     <ClInclude Include="VertexShader.h">
-      <Filter>GameEngine\VertexShader</Filter>
+      <Filter>GameEngine\GraphicsEngine\VertexShader</Filter>
+    </ClInclude>
+    <ClInclude Include="PixelShader.h">
+      <Filter>GameEngine\GraphicsEngine\PixelShader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +101,9 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="VertexShader.hlsl">
+      <Filter>App</Filter>
+    </FxCompile>
+    <FxCompile Include="PixelShader.hlsl">
       <Filter>App</Filter>
     </FxCompile>
   </ItemGroup>

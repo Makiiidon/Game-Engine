@@ -7,3 +7,9 @@ PangilinanGameEngine/.vs/PangilinanGameEngine/FileContentIndex/868feb87-6938-462
 *.ipch
 *.db
 *.db
+*.vsidx
+PangilinanGameEngine/.vs/PangilinanGameEngine/v17/.suo
+*.db
+*.ipch
+*.tlog
+*.filters

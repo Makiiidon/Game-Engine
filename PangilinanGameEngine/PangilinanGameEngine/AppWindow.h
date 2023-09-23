@@ -5,6 +5,7 @@
 #include "DeviceContext.h"
 #include "VertexBuffer.h"
 #include "VertexShader.h"
+#include "PixelShader.h"
 
 
 #include "Quad.h"
@@ -23,7 +24,8 @@ private:
 	SwapChain* m_swap_chain;
 	VertexBuffer* m_vb;
 	VertexShader* m_vs;
+	PixelShader* m_ps;
 	Quad* quad1;
-	Quad* quad2;
-	Quad* quad3;
+	//Quad* quad2;
+	//Quad* quad3;
 };

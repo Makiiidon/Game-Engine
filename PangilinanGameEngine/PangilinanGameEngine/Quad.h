@@ -5,6 +5,7 @@
 #include "SwapChain.h"
 #include "VertexBuffer.h"
 #include "VertexShader.h"
+#include "PixelShader.h"
 
 class Quad
 {
@@ -19,6 +20,7 @@ public:
 private:
 	VertexBuffer* m_vb;
 	VertexShader* m_vs;
+	PixelShader* m_ps;
 
 };
 

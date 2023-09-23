@@ -8,6 +8,7 @@ struct vec3
 struct vertex
 {
 	vec3 position;
+	vec3 color;
 };
 
 AppWindow::AppWindow()
@@ -28,48 +29,38 @@ void AppWindow::onCreate()
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
-	vertex list[] =
-	{
-		//X - Y - Z
-		{ -0.1f,	-0.1f,	0.0f }, // POS1
-		{  0.0f,	 0.1f,	0.0f }, // POS2
-		{  0.1f,	-0.1f,	0.0f },
-	};
-
 	vertex quadList1[] = {
-		{ -0.1f - .4f,	-0.1f - .4f,	0.0f }, // POS1
-		{ -0.1f - .4f,	 0.1f - .4f,	0.0f }, // POS2
-		{  0.1f - .4f,	-0.1f - .4f,	0.0f }, // POS3
-		{  0.1f - .4f,	 0.1f - .4f,	0.0f }, // POS4
+		{ -0.5f,	-0.5f,	0.0f , 1, 0, 0}, // POS1
+		{ -0.5f,	 0.5f,	0.0f , 0, 1, 0}, // POS2
+		{  0.5f,	-0.5f,	0.0f , 0, 0, 1}, // POS3
+		{  0.5f,	 0.5f,	0.0f , 1, 1, 0}, // POS4
 	};
 
-	vertex quadList2[] = {
-		{ -0.1f + .4f,	-0.2f + .4f,	0.0f }, // POS1
-		{ -0.1f + .4f,	 0.2f + .4f,	0.0f }, // POS2
-		{  0.1f + .4f,	-0.2f + .4f,	0.0f }, // POS3
-		{  0.1f + .4f,	 0.2f + .4f,	0.0f }, // POS4
-	};
+	//vertex quadList2[] = {
+	//	{ -0.1f + .4f,	-0.2f + .4f,	0.0f }, // POS1
+	//	{ -0.1f + .4f,	 0.2f + .4f,	0.0f }, // POS2
+	//	{  0.1f + .4f,	-0.2f + .4f,	0.0f }, // POS3
+	//	{  0.1f + .4f,	 0.2f + .4f,	0.0f }, // POS4
+	//};
 
-	vertex quadList3[] =
-	{
-		//X - Y - Z
-		{ -0.1f,	-0.1f + 0.5f,	0.0f }, // POS1
-		{ -0.1f,	 0.1f + 0.5f,	0.0f }, // POS2
-		{  0.1f,	-0.1f + 0.5f,	0.0f },
-		{  0.1f,	 0.1f + 0.5f,	0.0f },
-	};
+	//vertex quadList3[] =
+	//{
+	//	//X - Y - Z
+	//	{ -0.1f,	-0.1f + 0.5f,	0.0f }, // POS1
+	//	{ -0.1f,	 0.1f + 0.5f,	0.0f }, // POS2
+	//	{  0.1f,	-0.1f + 0.5f,	0.0f },
+	//	{  0.1f,	 0.1f + 0.5f,	0.0f },
+	//};
 
 	// CREATE VERTEX BUFFER FOR THE TRIANGLE
 	m_vb = GraphicsEngine::get()->createVertexBuffer();
 
-	// 
-	UINT size_list = ARRAYSIZE(list);
+
 
 	UINT size_quadList1 = ARRAYSIZE(quadList1);
-	UINT size_quadList2 = ARRAYSIZE(quadList2);
-	UINT size_quadList3 = ARRAYSIZE(quadList3);
+	//UINT size_quadList2 = ARRAYSIZE(quadList2);
+	//UINT size_quadList3 = ARRAYSIZE(quadList3);
 
-	GraphicsEngine::get()->createShaders();
 
 	void* shader_byte_code = nullptr;
 	size_t size_shader = 0;
@@ -77,17 +68,11 @@ void AppWindow::onCreate()
 
 	m_vs = GraphicsEngine::get()->createVertexShader(shader_byte_code, size_shader);
 
-	//GraphicsEngine::get()->getShaderBufferAndSize(&shader_byte_code, &size_shader);
-
-	m_vb->load(list, sizeof(vertex), size_list, shader_byte_code, size_shader);
-
 	// INITIALIZE QUADS
 	quad1 = new Quad(quadList1, sizeof(vertex), size_quadList1);
-	quad2 = new Quad(quadList2, sizeof(vertex), size_quadList2);
-	quad3 = new Quad(quadList3, sizeof(vertex), size_quadList3);
+	//quad2 = new Quad(quadList2, sizeof(vertex), size_quadList2);
+	//quad3 = new Quad(quadList3, sizeof(vertex), size_quadList3);
 
-	// RELEASE ALL COMPILED SHADERS
-	GraphicsEngine::get()->releaseCompiledShader();
 }
 
 void AppWindow::onUpdate()
@@ -99,20 +84,11 @@ void AppWindow::onUpdate()
 	//SET VIEWPORT OF RENDER TARGET IN WHICH WE HAVE TO DRAW
 	RECT rc = this->getClientWindowRect();
 	GraphicsEngine::get()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
-	//SET DEFAULT SHADER IN THE GRAPHICS PIPELINE TO BE ABLE TO DRAW
-	GraphicsEngine::get()->setShaders();
-	//SET THE VERTICES OF THE TRIANGLE TO DRAW
-	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
-	GraphicsEngine::get()->getImmediateDeviceContext()->setVertextShader(m_vs);
-
-
-	// FINALLY DRAW THE TRIANGLE
-	GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleList(m_vb->getSizeVertexList(), 0);
 
 	// DRAW QUADS
 	quad1->drawQuad();
-	quad2->drawQuad();
-	quad3->drawQuad();
+	//quad2->drawQuad();
+	//quad3->drawQuad();
 
 	m_swap_chain->present(true);
 }
@@ -123,7 +99,7 @@ void AppWindow::onDestroy()
 	m_swap_chain->release();
 	m_vb->release();
 	quad1->release();
-	quad2->release();
-	quad3->release();
+	//quad2->release();
+	//quad3->release();
 	GraphicsEngine::get()->release();
 }
