@@ -1,4 +1,4 @@
-﻿  AppWindow.cpp
-D:\School Files\10th Term\GDENG03\Game Engine\Game-Engine\PangilinanGameEngine\PangilinanGameEngine\AppWindow.cpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\School Files\10th Term\GDENG03\Game Engine\Game-Engine\PangilinanGameEngine\PangilinanGameEngine\AppWindow.cpp(103,30): warning C4244: '=': conversion from 'ULONGLONG' to 'float', possible loss of data
-  PangilinanGameEngine.vcxproj -> D:\School Files\10th Term\GDENG03\Game Engine\Game-Engine\PangilinanGameEngine\Debug\PangilinanGameEngine.exe
+﻿  EngineTime.cpp
+  Window.cpp
+  Generating Code...
+  PangilinanGameEngine.vcxproj -> C:\Users\Student\Documents\Pangilinan\Game-Engine\PangilinanGameEngine\Debug\PangilinanGameEngine.exe
