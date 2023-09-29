@@ -2,7 +2,6 @@
 #include <Windows.h>
 
 
-
 class Window
 {
 public:

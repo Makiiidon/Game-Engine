@@ -7,6 +7,7 @@
 #include "VertexShader.h"
 #include "PixelShader.h"
 #include "ConstantBuffer.h"
+#include "EngineTime.h"
 
 
 #include "Quad.h"
@@ -21,6 +22,9 @@ public:
 	virtual void onCreate() override;
 	virtual void onUpdate() override;
 	virtual void onDestroy() override;
+
+	AppWindow* getInstance();
+	static AppWindow* sharedInstance;
 private:
 	SwapChain* m_swap_chain;
 	//VertexBuffer* m_vb;
@@ -28,6 +32,9 @@ private:
 	PixelShader* m_ps;
 	ConstantBuffer* m_cb;
 
+	unsigned long m_old_time = 0;
+	float m_delta_time = 0;
+	float m_angle = 0;
 
 	Quad* quad1;
 	//Quad* quad2;
